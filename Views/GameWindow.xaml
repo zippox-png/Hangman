@@ -14,7 +14,6 @@
         </Style>
     </Window.Resources>
 
-    <!-- Menu -->
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -44,7 +43,6 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Left: Hangman image + user info -->
             <StackPanel Grid.Column="0" Grid.RowSpan="4" Margin="0,0,12,0">
                 <Border Height="50" Width="50" CornerRadius="25" ClipToBounds="True" Margin="0,0,0,4" HorizontalAlignment="Left">
                     <Image Source="{Binding UserAvatarPath}" Stretch="UniformToFill"/>
@@ -79,7 +77,6 @@
                 </StackPanel>
             </StackPanel>
 
-            <!-- Right top: Category + word display -->
             <StackPanel Grid.Column="1" Grid.Row="0" Margin="0,0,0,12">
                 <TextBlock Text="{Binding SelectedCategory}" FontSize="16" FontWeight="Bold" Margin="0,0,0,8"/>
                 <TextBlock Text="{Binding WordDisplayText}"
@@ -88,14 +85,25 @@
                            HorizontalAlignment="Center"
                            Padding="4,0"/>  
             </StackPanel>
+            <ItemsControl Grid.Column="1" Grid.Row="1"
+              ItemsSource="{Binding LetterButtons}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-            <!-- Letter buttons -->
-            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-                <!-- Row 1: A-I -->
-                <WrapPanel HorizontalAlignment="Center" Margin="0,0,0,4" x:Name="LetterPanel"/>
-            </StackPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource LetterBtn}"
+                    Content="{Binding Letter}"
+                    IsEnabled="{Binding IsEnabled}"
+                    Command="{Binding DataContext.GuessLetterCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                    CommandParameter="{Binding Letter}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            <!-- Status message -->
             <TextBlock Grid.Column="1" Grid.Row="2"
                        Text="{Binding StatusMessage}"
                        FontSize="14" FontWeight="Bold"

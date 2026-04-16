@@ -188,26 +188,28 @@ namespace Hangman.ViewModels
 
         private void InitLetterButtons()
         {
-            LetterButtons.Clear();
+            var buttons = new ObservableCollection<LetterButton>();
             for (char c = 'A'; c <= 'Z'; c++)
-                LetterButtons.Add(new LetterButton { Letter = c, IsEnabled = true });
-            OnPropertyChanged(nameof(LetterButtons));
+                buttons.Add(new LetterButton { Letter = c, IsEnabled = true });
+
+            LetterButtons = buttons;
         }
 
         public void StartNewGame()
         {
             _timer.Stop();
             _guessedLetters.Clear();
+            _guessedLetters = new List<char>(); 
             WrongGuesses = 0;
             TimeRemaining = 30;
             StatusMessage = string.Empty;
             GameActive = true;
 
-            _currentWord = _gameService.GetRandomWord(_selectedCategory);
-            UpdateWordDisplay();
+            _currentWord = _gameService.GetRandomWord(_selectedCategory).ToUpperInvariant();
+
             InitLetterButtons();
-            foreach (var btn in LetterButtons)
-                btn.IsEnabled = true;
+            UpdateWordDisplay();
+
             _timer.Start();
         }
 
@@ -219,7 +221,13 @@ namespace Hangman.ViewModels
 
         public void GuessLetter(char letter)
         {
-            if (!_gameActive) return;
+            if (!GameActive) return;
+
+            letter = char.ToUpperInvariant(letter);
+
+            if (_guessedLetters.Contains(letter))
+                return;
+
             var btn = LetterButtons.FirstOrDefault(b => b.Letter == letter);
             if (btn != null) btn.IsEnabled = false;
 
@@ -238,7 +246,6 @@ namespace Hangman.ViewModels
                     GameOver();
             }
         }
-
         private void WordGuessed()
         {
             if (!GameActive) return; 
