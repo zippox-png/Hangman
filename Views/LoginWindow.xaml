@@ -1,0 +1,84 @@
+<Window x:Class="Hangman.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sign In – Hangman" Height="480" Width="560"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="MinWidth" Value="80"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0" Text="Welcome to Hangman! Enjoy this game!"
+                   FontSize="18" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,12"/>
+
+        <!-- Users list + Avatar -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.Column="0" ItemsSource="{Binding Users}"
+                     SelectedItem="{Binding SelectedUser}"
+                     DisplayMemberPath="Username"
+                     Margin="0,0,8,0"/>
+
+            <StackPanel Grid.Column="1">
+                <Border Height="150" Width="160" BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,8">
+                    <Image Source="{Binding SelectedUserImage}" Stretch="Uniform"/>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="&lt;&lt;" Command="{Binding PrevAvatarCommand}" ToolTip="Avatar anterior"/>
+                    <Button Content="&gt;&gt;" Command="{Binding NextAvatarCommand}" ToolTip="Avatar urmator"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- New user creation -->
+        <GroupBox Grid.Row="2" Header="Cont nou" Margin="0,12,0,0">
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Username:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewUsername, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,4"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Imagine:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewUserImagePath}" IsReadOnly="True" Margin="0,0,8,0"/>
+                <Button Grid.Row="1" Grid.Column="2" Content="Browse..." Command="{Binding BrowseImageCommand}"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Bottom buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="New User" Command="{Binding NewUserCommand}"/>
+            <Button Content="Delete User" Command="{Binding DeleteUserCommand}"
+                    IsEnabled="{Binding IsUserSelected}"/>
+            <Button Content="Play" Command="{Binding PlayCommand}"
+                    IsEnabled="{Binding IsUserSelected}"
+                    Background="#4CAF50" Foreground="White"/>
+            <Button Content="Cancel" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

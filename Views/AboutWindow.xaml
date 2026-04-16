@@ -1,0 +1,16 @@
+<Window x:Class="Hangman.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About" Height="220" Width="360"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <StackPanel Margin="24" VerticalAlignment="Center">
+        <TextBlock Text="Hangman Game" FontSize="20" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,16"/>
+        <TextBlock Text="Student: Numele Tău" FontSize="14" HorizontalAlignment="Center"/>
+        <TextBlock Text="Grupa: 000" FontSize="14" HorizontalAlignment="Center"/>
+        <TextBlock Text="Specializare: Informatică" FontSize="14" HorizontalAlignment="Center"/>
+        <Button Content="OK" HorizontalAlignment="Center" Margin="0,20,0,0"
+                Padding="24,6" Click="OK_Click"/>
+    </StackPanel>
+</Window>
