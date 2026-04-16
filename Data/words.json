@@ -1,0 +1,104 @@
+{
+  "categories": [
+    {
+      "name": "Mașini",
+      "words": [
+        "FERRARI",
+        "LAMBORGHINI",
+        "PORSCHE",
+        "BUGATTI",
+        "MASERATI",
+        "MERCEDES",
+        "AUDI",
+        "TOYOTA",
+        "HONDA",
+        "FORD",
+        "CHEVROLET",
+        "TESLA",
+        "VOLVO",
+        "SUBARU",
+        "MAZDA"
+      ]
+    },
+    {
+      "name": "Filme",
+      "words": [
+        "INCEPTION",
+        "INTERSTELLAR",
+        "AVATAR",
+        "TITANIC",
+        "GLADIATOR",
+        "BRAVEHEART",
+        "MATRIX",
+        "ALIEN",
+        "JAWS",
+        "CASABLANCA",
+        "ROCKY",
+        "SCARFACE",
+        "THE GODFATHER",
+        "JOKER",
+        "BATMAN"
+      ]
+    },
+    {
+      "name": "Râuri",
+      "words": [
+        "AMAZON",
+        "NIL",
+        "DUNĂRE",
+        "MISSISSIPPI",
+        "YANGTZE",
+        "VOLGA",
+        "RHINE",
+        "THAMES",
+        "NIGER",
+        "MEKONG",
+        "GANGE",
+        "EUPHRATES",
+        "COLORADO",
+        "MURRAY",
+        "LENA"
+      ]
+    },
+    {
+      "name": "Țări",
+      "words": [
+        "ROMÂNIA",
+        "FRANȚA",
+        "GERMANIA",
+        "BRAZILIA",
+        "AUSTRALIA",
+        "JAPONIA",
+        "CANADA",
+        "ARGENTINA",
+        "PORTUGALIA",
+        "NORVEGIA",
+        "SUEDIA",
+        "FINLANDA",
+        "TURCIA",
+        "MEXIC",
+        "EGIPT"
+      ]
+    },
+    {
+      "name": "Animale",
+      "words": [
+        "ELEFANT",
+        "GIRAFĂ",
+        "DELFIN",
+        "PENGUIN",
+        "CROCODIL",
+        "GHEPARD",
+        "GORILĂ",
+        "CANGUR",
+        "PORCUPIN",
+        "FLAMINGO",
+        "CAMELEON",
+        "ORNITORINC",
+        "RINOCER",
+        "JDER",
+        "ARICI"
+      ]
+    }
+  ]
+}
