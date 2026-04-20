@@ -20,7 +20,15 @@ namespace Hangman.Views
             BuildCategoriesMenu();
         }
 
-        
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            if (DataContext is GameViewModel vm)
+            {
+                vm.StopTimer(); 
+            }
+        }
+
         private void BuildCategoriesMenu()
         {
             CategoriesMenu.Items.Clear();

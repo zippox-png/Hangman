@@ -175,7 +175,7 @@ namespace Hangman.ViewModels
 
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += TimerTick;
-            StartNewGame();
+
         }
 
         private void LoadCategories()
@@ -297,12 +297,18 @@ namespace Hangman.ViewModels
 
         private void TimerTick(object? s, EventArgs e)
         {
+            if (!GameActive) return;
             TimeRemaining--;
             if (TimeRemaining <= 0)
             {
                 TimeRemaining = 0;
                 GameOver();
             }
+        }
+        public void StopTimer()
+        {
+            _timer.Stop(); 
+            GameActive = false; 
         }
 
         private void SaveGame()
