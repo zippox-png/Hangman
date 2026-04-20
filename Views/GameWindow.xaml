@@ -45,7 +45,7 @@
 
             <StackPanel Grid.Column="0" Grid.RowSpan="4" Margin="0,0,12,0">
                 <Border Height="50" Width="50" CornerRadius="25" ClipToBounds="True" Margin="0,0,0,4" HorizontalAlignment="Left">
-                    <Image Source="{Binding UserAvatarPath}" Stretch="UniformToFill"/>
+                    <Image Source="{Binding UserAvatar}" Stretch="UniformToFill"/>
                 </Border>
                 <TextBlock Text="{Binding UserDisplayName}" FontWeight="Bold" FontSize="14" Margin="0,0,0,8"/>
 
