@@ -15,14 +15,4 @@
     <Page Remove="Images\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Data\words.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Data\words.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

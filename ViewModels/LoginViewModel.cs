@@ -24,6 +24,7 @@ namespace Hangman.ViewModels
                 SetProperty(ref _selectedUser, value);
                 OnPropertyChanged(nameof(IsUserSelected));
                 OnPropertyChanged(nameof(SelectedUserImage));
+                OnPropertyChanged(nameof(AvatarPreview));
             }
         }
 
@@ -32,7 +33,19 @@ namespace Hangman.ViewModels
         public string SelectedUserImage => _selectedUser?.ImagePath is { Length: > 0 } p
             ? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, p)
             : string.Empty;
+        public string AvatarPreview
+        {
+            get
+            {
+                if (_selectedUser?.ImagePath is { Length: > 0 } p1)
+                    return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, p1);
+              
+                if (!string.IsNullOrWhiteSpace(NewUserImagePath))
+                    return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, NewUserImagePath);
 
+                return string.Empty;
+            }
+        }
         private string _newUsername = string.Empty;
         public string NewUsername
         {
@@ -44,9 +57,16 @@ namespace Hangman.ViewModels
         public string NewUserImagePath
         {
             get => _newUserImagePath;
-            set => SetProperty(ref _newUserImagePath, value);
+            set
+            {
+                if (SetProperty(ref _newUserImagePath, value))
+                    OnPropertyChanged(nameof(AvatarPreview));
+            }
         }
-
+        public string NewUserImagePreview
+            => string.IsNullOrWhiteSpace(NewUserImagePath)
+                ? string.Empty
+                : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, NewUserImagePath);
         public ObservableCollection<string> PredefinedAvatars { get; } = new();
         private int _avatarIndex = 0;
 
@@ -84,7 +104,7 @@ namespace Hangman.ViewModels
         {
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "avatars");
             if (!Directory.Exists(dir)) return;
-            foreach (var f in Directory.GetFiles(dir, "*.jpg").Concat(Directory.GetFiles(dir, "*.gif")))
+            foreach (var f in Directory.GetFiles(dir, "*.png").Concat(Directory.GetFiles(dir, "*.gif")))
                 PredefinedAvatars.Add(Path.Combine("Images", "avatars", Path.GetFileName(f)));
             if (PredefinedAvatars.Count > 0)
                 NewUserImagePath = PredefinedAvatars[0];

@@ -20,12 +20,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Title -->
         <TextBlock Grid.Row="0" Text="Welcome to Hangman! Enjoy this game!"
                    FontSize="18" FontWeight="Bold"
                    HorizontalAlignment="Center" Margin="0,0,0,12"/>
 
-        <!-- Users list + Avatar -->
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -39,7 +38,7 @@
 
             <StackPanel Grid.Column="1">
                 <Border Height="150" Width="160" BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,8">
-                    <Image Source="{Binding SelectedUserImage}" Stretch="Uniform"/>
+                    <Image Source="{Binding AvatarPreview}" Stretch="Uniform"/>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="&lt;&lt;" Command="{Binding PrevAvatarCommand}" ToolTip="Avatar anterior"/>
@@ -48,7 +47,6 @@
             </StackPanel>
         </Grid>
 
-        <!-- New user creation -->
         <GroupBox Grid.Row="2" Header="Cont nou" Margin="0,12,0,0">
             <Grid Margin="8">
                 <Grid.ColumnDefinitions>
@@ -70,7 +68,6 @@
             </Grid>
         </GroupBox>
 
-        <!-- Bottom buttons -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
             <Button Content="New User" Command="{Binding NewUserCommand}"/>
             <Button Content="Delete User" Command="{Binding DeleteUserCommand}"
